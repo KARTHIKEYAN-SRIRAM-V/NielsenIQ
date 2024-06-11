@@ -34,6 +34,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Save Personalized data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"shopperId\": \"S-1000\",\r\n    \"product\": [\r\n        {\r\n            \"productId\": \"MB-2093193399\",\r\n            \"relevencyScore\": 31.0892095\r\n        },\r\n        {\r\n            \"productId\": \"BB-2144746852\",\r\n            \"relevencyScore\": 65.16626010\r\n        },\r\n        {\r\n            \"productId\": \"BB-2144746851\",\r\n            \"relevencyScore\": 62.16626010\r\n        }\r\n       \r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/save/data/personalized",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"save",
+						"data",
+						"personalized"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

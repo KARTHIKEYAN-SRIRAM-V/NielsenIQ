@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.nielsenIQ.dataService.dto.ProductMetaDataDto;
 import com.nielsenIQ.dataService.dto.Response;
+import com.nielsenIQ.dataService.dto.ShopperDto;
 import com.nielsenIQ.dataService.service.DataTeamService;
 
 @RestController
@@ -34,9 +35,9 @@ public class DataTeamController {
 	}
 
 	@PostMapping(value = "/personalized")
-	public ResponseEntity<?> savePersonalized(@RequestBody JsonNode jNode) {
+	public ResponseEntity<?> savePersonalized(@RequestBody ShopperDto obj) {
 
-		Response response = dataTeamService.savePersonalizedData(jNode);
+		Response response = dataTeamService.savePersonalizedData(obj);
 
 		if (response.getStatusCode() == 200) {
 			return ResponseEntity.ok(response);

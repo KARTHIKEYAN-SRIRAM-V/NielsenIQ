@@ -2,10 +2,13 @@ package com.nielsenIQ.dataService.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nielsenIQ.dataService.dto.ProductMetaDataDto;
 import com.nielsenIQ.dataService.dto.Response;
+import com.nielsenIQ.dataService.dto.ShopperDto;
 import com.nielsenIQ.dataService.entity.ProductMetaData;
 import com.nielsenIQ.dataService.entity.Shopper;
 import com.nielsenIQ.dataService.repository.ProductMetaDataRepository;
@@ -42,12 +45,13 @@ public class DataTeamService {
 	}
 
 	// To save the Personalized Data received from Data Team
-	public Response savePersonalizedData(JsonNode jNode) {
+	public Response savePersonalizedData(ShopperDto obj) {
 
 		Response response = new Response();
 
 		ObjectMapper mapper = new ObjectMapper();
-		Shopper shopper = mapper.convertValue(jNode, Shopper.class);
+		//mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		Shopper shopper = mapper.convertValue(obj, Shopper.class);
 
 		try {
 			shopperRepository.save(shopper);

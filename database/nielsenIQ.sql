@@ -31,7 +31,7 @@ CREATE TABLE `product` (
   UNIQUE KEY `UKat03k6o77o1rru4e6jtn4vbx7` (`product_id`),
   KEY `FKr6rjsapu1k2qy98xbw4jtd3oh` (`shopper_id`),
   CONSTRAINT `FKr6rjsapu1k2qy98xbw4jtd3oh` FOREIGN KEY (`shopper_id`) REFERENCES `shopper` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (3,'BB-2144746855',66.01234355,4),(4,'MD-543564697',88.552212211,4);
+INSERT INTO `product` VALUES (3,'BB-2144746855',66.01234355,4),(4,'MD-543564697',88.552212211,4),(28,'MB-2093193399',31.0892095,15),(29,'BB-2144746852',65.1662601,15),(30,'BB-2144746851',62.1662601,15);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `product_meta_data` (
   `product_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `product_id_UNIQUE` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `shopper` (
   `shopper_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UKf6edwtf6fh0wpm7aldyuosurv` (`shopper_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `shopper` (
 
 LOCK TABLES `shopper` WRITE;
 /*!40000 ALTER TABLE `shopper` DISABLE KEYS */;
-INSERT INTO `shopper` VALUES (4,'2');
+INSERT INTO `shopper` VALUES (15,'S-1000'),(4,'S-1001');
 /*!40000 ALTER TABLE `shopper` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -105,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-12  2:28:55
+-- Dump completed on 2024-06-12  3:11:24
