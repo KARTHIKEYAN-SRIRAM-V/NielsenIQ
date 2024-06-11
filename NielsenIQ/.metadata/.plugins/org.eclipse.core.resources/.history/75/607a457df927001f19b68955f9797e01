@@ -1,0 +1,72 @@
+package com.nielsenIQ.dataService.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nielsenIQ.dataService.dto.ProductMetaDataDto;
+import com.nielsenIQ.dataService.dto.Response;
+import com.nielsenIQ.dataService.dto.ShopperDto;
+import com.nielsenIQ.dataService.entity.ProductMetaData;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.repository.ProductMetaDataRepository;
+import com.nielsenIQ.dataService.repository.ShopperRepository;
+
+@Service
+public class MainService {
+
+	@Autowired
+	private ShopperRepository shopperRepository;
+
+	@Autowired
+	private ProductMetaDataRepository productMetaDataRepository;
+	
+	private static ObjectMapper mapper;
+
+	public Shopper getShopperById(long id) {
+
+		Shopper shopper = shopperRepository.findById(id);
+		return shopper;
+	}
+
+	
+	public Response saveMetaData(ProductMetaDataDto productMetaDataDto) {
+		
+		Response response = new Response();
+		ProductMetaData productMetaData=mapper.convertValue(productMetaDataDto, ProductMetaData.class);
+		
+
+		try {
+			productMetaDataRepository.save(productMetaData);
+			response.setMessage("Metadata saved successfully");
+			return response;
+		}
+		catch (Exception e) {
+			response.setMessage("Metadata saving failed");
+			return response;
+		}
+
+	}
+	
+	
+	public Response savePersonalizedData(ShopperDto shopperDto) {
+		
+		Response response = new Response();
+		Shopper shopper=mapper.convertValue(shopperDto, Shopper.class);
+		
+		try {
+			shopperRepository.save(shopper);
+			response.setMessage("Personalized Data saved successfully");
+			return response;
+		}
+		catch (Exception e) {
+			response.setMessage("Personalized Data saving failed");
+			return response;
+		}
+		
+		
+	}
+
+}

@@ -1,0 +1,45 @@
+package com.nielsenIQ.dataService.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nielsenIQ.dataService.dto.Response;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.service.MainService;
+
+@RestController
+@RequestMapping(value = "/shopper/details")
+public class MainController {
+
+	 @Autowired
+	 private MainService mainService;
+	
+	@GetMapping(value = "/byId/{id}")
+	public ResponseEntity<?> getDetails(@PathVariable long id) {
+		
+		List<Shopper> shopper=mainService.getShopperById(id);
+		Response response=new Response();
+	
+		if(shopper!=null) {
+			
+			return ResponseEntity.ok(shopper);
+			
+		}
+		
+		else {
+			
+			response.setMessage("Data not found for the id:"+id);
+			return ResponseEntity.ofNullable(response);
+		}
+		
+		
+		
+	}
+	
+}

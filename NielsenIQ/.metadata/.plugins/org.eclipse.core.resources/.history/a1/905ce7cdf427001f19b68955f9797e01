@@ -1,0 +1,38 @@
+package com.nielsenIQ.dataService.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nielsenIQ.dataService.dto.Response;
+import com.nielsenIQ.dataService.entity.ProductMetaData;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.service.MainService;
+
+@RestController
+@RequestMapping(value = "/save/metaData")
+public class DataTeamController {
+
+	@Autowired
+	private MainService mainService;
+
+	@PostMapping(value = "/")
+	public ResponseEntity<?> getDetails(@RequestBody ProductMetaData productMetaData) {
+
+		mainService.saveMetaData(productMetaData);
+		Response response = new Response();
+		response.setMessage("Data saved successfully");
+		
+			return ResponseEntity.ok(response);
+		
+
+	}
+
+}

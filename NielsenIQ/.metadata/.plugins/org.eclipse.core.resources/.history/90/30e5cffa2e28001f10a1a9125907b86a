@@ -1,0 +1,82 @@
+package com.nielsenIQ.dataService.service;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nielsenIQ.dataService.dto.ProductMetaDataDto;
+import com.nielsenIQ.dataService.dto.ShopperDto;
+import com.nielsenIQ.dataService.entity.Product;
+import com.nielsenIQ.dataService.entity.ProductMetaData;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.repository.ProductMetaDataRepository;
+import com.nielsenIQ.dataService.repository.ProductRepository;
+import com.nielsenIQ.dataService.repository.ShopperRepository;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.querydsl.QPageRequest;
+
+@Service
+public class EcomService {
+
+	@Autowired
+	private ShopperRepository shopperRepository;
+	
+	@Autowired
+	private ProductMetaDataRepository productMetaDataRepository;
+
+	
+	//To get Shopper data based on Shopper id
+	public List<ProductMetaDataDto> getProductById(String id) {
+		
+		ObjectMapper mapper=new ObjectMapper();
+
+		Shopper shopper = shopperRepository.findByShopperId(id);
+		List<ProductMetaDataDto> productMetaDataDto=new ArrayList<ProductMetaDataDto>();
+		
+		for(Product pr:shopper.getProduct()) productMetaDataDto.add(mapper.convertValue(productMetaDataRepository.findByProductId(pr.getProductId()), ProductMetaDataDto.class));
+		
+	
+		return productMetaDataDto;
+	}
+	
+	
+	  //To get Product data based on Category
+	public List<ProductMetaDataDto> getProductByCategory(String category) {
+	  
+	  ObjectMapper mapper=new ObjectMapper();
+	  
+	  QPageRequest topTen = new QPageRequest(0, 1);
+	 
+	  
+	  Optional<List<ProductMetaData>> productMetaData = productMetaDataRepository.findByCategory(category,topTen); 
+	  List<ProductMetaDataDto> productMetaDataDto=new ArrayList<ProductMetaDataDto>();
+	  
+	  if(productMetaData.isPresent())
+	  for(ProductMetaData pmd:productMetaData.get()) productMetaDataDto.add(mapper.convertValue(pmd, ProductMetaDataDto.class));
+	 
+	  return productMetaDataDto;
+	  }
+	
+	
+	  //To get Product data based on Category
+	public List<ProductMetaDataDto> getProductByBrand(String brand) {
+	  
+	  ObjectMapper mapper=new ObjectMapper();
+	  
+	 Optional<List<ProductMetaData>> productMetaData = productMetaDataRepository.findByBrand(brand); 
+	  List<ProductMetaDataDto> productMetaDataDto=new ArrayList<ProductMetaDataDto>();
+	  
+	  if(productMetaData.isPresent())
+	  for(ProductMetaData pmd:productMetaData.get()) productMetaDataDto.add(mapper.convertValue(pmd, ProductMetaDataDto.class));
+	 
+	  return productMetaDataDto;
+	  }
+	 
+	 
+	
+}

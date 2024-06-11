@@ -1,0 +1,31 @@
+package com.nielsenIQ.dataService.dto;
+
+
+import java.util.List;
+
+import com.nielsenIQ.dataService.entity.Product;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductDto {
+   
+    private String productId;
+    private Double relevencyScore;
+     
+ 
+    public Product toProduct(){
+        return Product.builder()
+                .productId(productId)
+                .relevencyScore(relevencyScore)
+                .build();
+    }
+
+}
+

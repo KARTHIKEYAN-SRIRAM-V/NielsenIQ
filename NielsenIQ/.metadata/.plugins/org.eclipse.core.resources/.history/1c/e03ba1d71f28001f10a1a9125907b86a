@@ -1,0 +1,40 @@
+package com.nielsenIQ.dataService.service;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nielsenIQ.dataService.dto.ShopperDto;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.repository.ShopperRepository;
+
+@Service
+public class EcomService {
+
+	@Autowired
+	private ShopperRepository shopperRepository;
+
+	
+	//To get Shopper data based on Shopper id
+	public ShopperDto getShopperById(long id) {
+		
+		ObjectMapper mapper=new ObjectMapper();
+
+		Shopper shopper = shopperRepository.findById(id);
+		ShopperDto shopperDto=mapper.convertValue(shopper, ShopperDto.class);
+		return shopperDto;
+	}
+	
+	//To get Shopper data based on Shopper id
+	public ShopperDto getShopperCategory(String category) {
+		
+		ObjectMapper mapper=new ObjectMapper();
+
+		Shopper shopper = shopperRepository.findById(id);
+		ShopperDto shopperDto=mapper.convertValue(shopper, ShopperDto.class);
+		return shopperDto;
+	}
+
+	
+}

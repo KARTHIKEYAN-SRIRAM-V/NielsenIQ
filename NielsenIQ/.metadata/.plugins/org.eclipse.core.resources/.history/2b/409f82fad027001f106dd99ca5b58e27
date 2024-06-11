@@ -1,0 +1,28 @@
+package com.nielsenIQ.dataService.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.repository.ShopperRepository;
+
+@RestController
+@RequestMapping(value = "/shopper/details")
+public class MainController {
+
+	
+	@GetMapping(value = "/byId/{id}")
+	public List<Shopper> getDetails(@PathVariable long id) {
+		
+		List<Shopper> shp= shopperRepository.findById(id);
+		
+		return shp;
+		
+	}
+	
+}

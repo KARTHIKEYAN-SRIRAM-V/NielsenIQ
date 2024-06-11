@@ -1,0 +1,48 @@
+package com.nielsenIQ.dataService.dto;
+
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nielsenIQ.dataService.entity.Product;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductDto {
+   
+	@JsonProperty("productId")
+    private String productId;
+	
+	@JsonProperty("relevencyScore")
+    private Double relevencyScore;
+     
+ 
+    public Product toProduct(){
+        return Product.builder()
+                .productId(productId)
+                .relevencyScore(relevencyScore)
+                .build();
+    }
+    
+    public static ProductDto fromProduct(Product product){
+        return ProductDto.builder()
+                .productId(product.getProductId())
+                .relevencyScore(product.getRelevencyScore())
+                .build();
+    }
+
+    public static List<Product> fromProductDtoList(List<ProductDto> productDto){
+        return productDto.stream()
+                .map(ProductDto::toProduct)
+                .toList();
+    }
+
+}
+

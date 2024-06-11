@@ -1,0 +1,7 @@
+package com.nielsenIQ.dataService.dto;
+
+public class Response {
+	
+	private String message;
+
+}

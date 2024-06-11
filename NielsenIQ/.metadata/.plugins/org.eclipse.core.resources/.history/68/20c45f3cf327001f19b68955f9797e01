@@ -1,0 +1,32 @@
+package com.nielsenIQ.dataService.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nielsenIQ.dataService.entity.ProductMetaData;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.repository.ShopperRepository;
+
+@Service
+public class MainService {
+
+	
+	@Autowired
+    private ShopperRepository shopperRepository;
+	
+	public List<Shopper> getShopperById(long id) {
+		
+		List<Shopper> shopper=shopperRepository.findById(id);
+		return shopper;
+	}
+	
+	
+	public List<Shopper> saveMetaData(ProductMetaData productMetaData ) {
+		
+		List<Shopper> shopper=shopperRepository.save(productMetaData);
+		return shopper;
+	}
+	
+}

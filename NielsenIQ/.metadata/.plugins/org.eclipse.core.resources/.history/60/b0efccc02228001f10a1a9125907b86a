@@ -1,0 +1,50 @@
+package com.nielsenIQ.dataService.service;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nielsenIQ.dataService.dto.ShopperDto;
+import com.nielsenIQ.dataService.entity.Product;
+import com.nielsenIQ.dataService.entity.Shopper;
+import com.nielsenIQ.dataService.repository.ProductRepository;
+import com.nielsenIQ.dataService.repository.ShopperRepository;
+
+@Service
+public class EcomService {
+
+	@Autowired
+	private ShopperRepository shopperRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
+
+	
+	//To get Shopper data based on Shopper id
+	public JsonNode getProductById(long id) throws JsonMappingException, JsonProcessingException {
+		
+		ObjectMapper mapper=new ObjectMapper();
+
+		Shopper shopper = shopperRepository.findByShopperId(id);
+		JsonNode response = mapper.readTree(shopper.getProduct().toString());
+		return response;
+	}
+	
+	/*
+	 * //To get Shopper data based on Shopper id public ShopperDto
+	 * getShopperCategory(String category) {
+	 * 
+	 * ObjectMapper mapper=new ObjectMapper();
+	 * 
+	 * Product product = productRepository.findByCategory(category); Shopper shopper
+	 * = shopperRepository.findById(product.ge); ShopperDto
+	 * shopperDto=mapper.convertValue(shopper, ShopperDto.class); return shopperDto;
+	 * }
+	 */
+	
+}

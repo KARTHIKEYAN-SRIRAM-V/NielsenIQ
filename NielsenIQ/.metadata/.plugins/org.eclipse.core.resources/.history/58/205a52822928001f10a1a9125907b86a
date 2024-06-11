@@ -1,0 +1,16 @@
+package com.nielsenIQ.dataService.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import com.nielsenIQ.dataService.entity.ProductMetaData;
+import java.util.List;
+
+
+@Repository
+public interface ProductMetaDataRepository extends JpaRepository<ProductMetaData, Long> {
+
+	List<ProductMetaData> findByCategory(String category);
+	ProductMetaData findByProductId(String productId);
+	
+}
+

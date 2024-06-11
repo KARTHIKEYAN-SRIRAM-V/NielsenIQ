@@ -1,0 +1,5 @@
+package com.nielsenIQ.dataService.repository;
+
+public interface ProductRepository {
+
+}

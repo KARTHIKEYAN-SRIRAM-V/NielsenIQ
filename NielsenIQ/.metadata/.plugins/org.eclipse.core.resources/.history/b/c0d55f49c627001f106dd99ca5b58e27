@@ -1,0 +1,5 @@
+package com.nielsenIQ.dataService.entity;
+
+public class Shopper {
+
+}

@@ -1,0 +1,15 @@
+package com.nielsenIQ.dataService.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Data;
+
+@Data
+public class ShopperDto {
+	
+
+    private String shopperId;
+    List<ProductDto> product = new ArrayList<>();
+
+}
+

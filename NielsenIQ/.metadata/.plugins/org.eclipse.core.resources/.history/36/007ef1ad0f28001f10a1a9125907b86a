@@ -1,0 +1,36 @@
+package com.nielsenIQ.dataService.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.nielsenIQ.dataService.entity.Product;
+
+import lombok.Data;
+
+@Data
+public class ShopperDto {
+	
+
+    private String shopperId;
+    List<ProductDto> product = new ArrayList<>();
+    
+    public List<Product> ShopperDto(List<ProductDto> product) {
+    	
+
+    	Product[] products=new Product[product.size()];
+    	List<Product> pr=new ArrayList<Product>();
+    	
+    	for(int i=0;i<product.size();i++) {
+    		
+    		products[i].setProductId(product.get(i).getProductId());
+    		products[i].setRelevencyScore(product.get(i).getRelevencyScore());
+    		pr.add(products[i]);
+    	}
+    	
+    	return pr;
+    	
+    	
+    }
+
+}
+
